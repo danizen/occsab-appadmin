@@ -10,7 +10,6 @@
 
 - name: Create /usr/nlm/apps/.npmglobal
   file: dest=/usr/nlm/apps/.npmglobal  state=directory owner="{{ appadmin_user }}" group="{{ appadmin_group }}"
-  when: "{{ appadmin_include_node }}"
 
 - name: Enable user specific node packages for user
   lineinfile:

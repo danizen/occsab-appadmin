@@ -1,0 +1,46 @@
+# Check that the system is properly provisioned
+---
+- stat:
+    path: /usr/nlm/apps/.bashrc
+  register: _bashrc
+
+- stat:
+    path: /usr/nlm/apps/.bash_profile
+  register: _bash_profile
+
+- stat:
+    path: /usr/nlm/apps/html/index.html
+  register: _html_index
+
+- debug:
+    var: _bashrc
+    verbosity: 2
+
+- debug:
+    var: _bash_profile
+    verbosity: 2
+
+- debug:
+    var: _html_index
+    verbosity: 2
+
+- name: bashrc is ok
+  assert:
+    that:
+      - _bashrc.stat.exists == true
+      - _bashrc.stat.pw_name == 'appadmin'
+      - _bashrc.stat.gr_name == 'appadmin'
+
+- name: bash_profile is ok
+  assert:
+    that:
+      - _bash_profile.stat.exists == true
+      - _bash_profile.stat.pw_name == 'appadmin'
+      - _bashrc.stat.gr_name == 'appadmin'
+
+- name: index.html is ok
+  assert:
+    that:
+      - _html_index.stat.exists == true
+      - _html_index.stat.pw_name == 'appadmin'
+      - _html_index.stat.gr_name == 'appadmin'

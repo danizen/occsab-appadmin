@@ -47,10 +47,10 @@
     mode: 0644
 
 - include: node.yml
-  when: "{{ appadmin_include_node }}"
+  when: appadmin_include_node|bool
 
 - include: ruby.yml
-  when: "{{ appadmin_include_ruby }}"
+  when: appadmin_include_ruby|bool
 
 #- name: add read-only directories for Apache httpd
 #  sefcontext:

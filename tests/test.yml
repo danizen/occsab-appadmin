@@ -1,0 +1,14 @@
+---
+
+# Test file for awslogs
+
+- hosts: all
+  connection: local
+  become: true
+
+  roles:
+    - occs-awslogs
+
+  tasks:
+    - include: asserts.yml
+
